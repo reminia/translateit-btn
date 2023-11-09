@@ -1,4 +1,3 @@
 # translateit-btn
 
-A translate button that can be added to your html page to translate your posts
-to any language.
+A button that can be added to html page to translate the content to any language.

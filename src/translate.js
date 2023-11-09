@@ -11,7 +11,6 @@ function translate(selector, options = {}) {
   let block = document.querySelector(_selector);
   let select = document.createElement("select");
   select.classList.add("translate-btn");
-  select.style.all = "float:right";
   select.addEventListener("change", (event) => {
     let lang = event.target.value;
     translateElement(block, options, lang);
@@ -27,7 +26,7 @@ function translate(selector, options = {}) {
     option.classList.add("translate-option");
     select.appendChild(option);
   }
-  block.prepend(select);
+  block.insertAdjacentElement("beforebegin", select);
 }
 
 function translateElement(element, options, lang) {
@@ -40,7 +39,11 @@ function translateElement(element, options, lang) {
   .then(resp => resp.json())
   .then(json => {
     let content = callback(json);
-    element.innerHTML = content;
+    if (content) {
+      element.innerHTML = content;
+    } else {
+      console.error("error response", json);
+    }
   });
 }
 
