@@ -1,0 +1,11 @@
+{
+  "name": "translateit-btn",
+  "version": "1.0.0",
+  "description": "a button that can be used to translate any content",
+  "main": "translate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sleefd@gmail.com",
+  "license": "MIT"
+}
