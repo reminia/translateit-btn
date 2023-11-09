@@ -12,6 +12,10 @@ function translate(selector, options = {}) {
   let select = document.createElement("select");
   select.classList.add("translate-btn");
   select.style.all = "float:right";
+  select.addEventListener("change", (event) => {
+    let lang = event.target.value;
+    translateElement(block, options, lang);
+  });
   const langs = options.lang;
   let option = document.createElement("option");
   option.text = "translate";
@@ -26,12 +30,23 @@ function translate(selector, options = {}) {
   block.prepend(select);
 }
 
-function translateElement(element, options) {
-
+function translateElement(element, options, lang) {
+  fetch(options.endpoint, {
+    method: "POST",
+    body: JSON.stringify({
+      lang: lang,
+      content: element.innerHTML
+    })
+  })
+  .then(resp => resp.json())
+  .then(json => {
+    let content = callback(json);
+    element.innerHTML = content;
+  });
 }
 
-// defines how to parse the resp from the endpoint
+// defines how to parse the json resp from the endpoint
 // return the result of translation
-function callback(resp) {
-  return "";
+function callback(json) {
+  return json.reply;
 }
