@@ -1,0 +1,19 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 8
+  },
+  "rules": {
+    "indent": [
+      "error",
+      2
+    ],
+    "block-scoped-var": "error",
+    "no-undefined": "error"
+  }
+}
