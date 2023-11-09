@@ -32,8 +32,7 @@ function translate(selector, options = {}) {
 
 function translateElement(element, options, lang) {
   fetch(options.endpoint, {
-    method: "POST",
-    body: JSON.stringify({
+    method: "POST", body: JSON.stringify({
       lang: lang,
       content: element.innerHTML
     })
@@ -49,4 +48,8 @@ function translateElement(element, options, lang) {
 // return the result of translation
 function callback(json) {
   return json.reply;
+}
+
+if (typeof module != "undefined") {
+  module.exports = translate;
 }
