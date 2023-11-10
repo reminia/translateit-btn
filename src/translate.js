@@ -7,15 +7,12 @@ class TranslateIt {
   };
 
   constructor(selector, options) {
-    this.selector = selector;
-    this.options = options;
+    this.selector = selector || this.options.selector;
+    this.options = Object.assign({}, TranslateIt.defaultOptions, options);
   }
 
   translate() {
-    this.options = Object.assign({}, TranslateIt.defaultOptions, this.options);
-
-    const selector = this.selector || this.options.selector;
-    const block = document.querySelector(selector);
+    const block = document.querySelector(this.selector);
 
     const select = document.createElement('select');
     select.classList.add('translate-btn');
@@ -23,13 +20,13 @@ class TranslateIt {
       const lang = event.target.value;
       this.translateElement(block, this.options, lang);
     });
+    block.insertAdjacentElement('beforebegin', select);
 
     this.createOption(select, 'Translate', ['selected']);
     for (const lang of this.options.lang) {
       this.createOption(select, lang, ['translate-option']);
     }
 
-    block.insertAdjacentElement('beforebegin', select);
   }
 
   createOption(select, text, classes) {
