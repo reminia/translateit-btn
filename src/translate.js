@@ -38,7 +38,7 @@ function translateElement(element, options, lang) {
   })
   .then(resp => resp.json())
   .then(json => {
-    let content = callback(json);
+    let content = options.callback(json);
     if (content) {
       element.innerHTML = content;
     } else {
