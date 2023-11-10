@@ -4,7 +4,6 @@ class TranslateIt {
     lang: ['English', 'Chinese', 'French'],
     selector: '.post',
     endpoint: 'http://localhost:8080/translate',
-    callback: (json) => json.reply,
   };
 
   constructor(selector, options) {
@@ -47,7 +46,7 @@ class TranslateIt {
         content: element.innerHTML,
       }),
     }).then(resp => resp.json()).then(json => {
-      let content = options.callback(json);
+      const content = json.reply;
       if (content) {
         element.innerHTML = content;
       } else {
