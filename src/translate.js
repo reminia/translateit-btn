@@ -21,7 +21,7 @@ class TranslateIt {
   translate() {
     const select = document.createElement('select');
     select.classList.add('translate-btn');
-    select.addEventListener('change', this.translateElement);
+    select.addEventListener('change', this.translateElement.bind(this));
     this.block.insertAdjacentElement('beforebegin', select);
 
     this.createOption(select, 'Translate', ['selected']);
