@@ -1,4 +1,5 @@
 class TranslateIt {
+
   static defaultOptions = {
     lang: ["English", "Chinese", "French"],
     selector: ".post",
@@ -13,26 +14,30 @@ class TranslateIt {
 
   translate() {
     this.options = Object.assign({}, TranslateIt.defaultOptions, this.options);
+
     const selector = this.selector || this.options.selector;
-    let block = document.querySelector(selector);
-    let select = document.createElement("select");
+    const block = document.querySelector(selector);
+
+    const select = document.createElement("select");
     select.classList.add("translate-btn");
     select.addEventListener("change", (event) => {
-      let lang = event.target.value;
+      const lang = event.target.value;
       this.translateElement(block, this.options, lang);
     });
-    const langs = this.options.lang;
-    let option = document.createElement("option");
-    option.text = "translate";
-    option.classList.add("translate-option", "selected", "disabled");
-    select.appendChild(option);
-    for (let i = 0; i < langs.length; i++) {
-      let option = document.createElement("option");
-      option.text = langs[i];
-      option.classList.add("translate-option");
-      select.appendChild(option);
+
+    this.createOption(select, "Translate", ["selected"]);
+    for (const lang of this.options.lang) {
+      this.createOption(select, lang, ["translate-option"]);
     }
+
     block.insertAdjacentElement("beforebegin", select);
+  }
+
+  createOption(select, text, classes) {
+    const option = document.createElement("option");
+    option.text = text;
+    classes.forEach(name => option.classList.add(name));
+    select.appendChild(option);
   }
 
   translateElement(element, options, lang) {
