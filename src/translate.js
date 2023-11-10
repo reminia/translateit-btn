@@ -7,26 +7,27 @@ class TranslateIt {
   };
 
   constructor(selector, options) {
-    this.selector = selector || this.options.selector;
+    this.selector = selector || TranslateIt.defaultOptions.selector;
     this.options = Object.assign({}, TranslateIt.defaultOptions, options);
+    this.init();
+  }
+
+  init() {
+    this.block = document.querySelector(this.selector);
+    //cache the original content
+    this.originalContent = this.block.innerHTML;
   }
 
   translate() {
-    const block = document.querySelector(this.selector);
-
     const select = document.createElement('select');
     select.classList.add('translate-btn');
-    select.addEventListener('change', (event) => {
-      const lang = event.target.value;
-      this.translateElement(block, this.options, lang);
-    });
-    block.insertAdjacentElement('beforebegin', select);
+    select.addEventListener('change', this.translateElement);
+    this.block.insertAdjacentElement('beforebegin', select);
 
     this.createOption(select, 'Translate', ['selected']);
     for (const lang of this.options.lang) {
       this.createOption(select, lang, ['translate-option']);
     }
-
   }
 
   createOption(select, text, classes) {
@@ -36,20 +37,25 @@ class TranslateIt {
     select.appendChild(option);
   }
 
-  translateElement(element, options, lang) {
-    fetch(options.endpoint, {
-      method: 'POST', body: JSON.stringify({
-        lang: lang,
-        content: element.innerHTML,
-      }),
-    }).then(resp => resp.json()).then(json => {
-      const content = json.reply;
-      if (content) {
-        element.innerHTML = content;
-      } else {
-        console.error('error response', json);
-      }
-    });
+  translateElement(event) {
+    if (event.target.selectedIndex === 0) {
+      this.block.innerHTML = this.originalContent;
+    } else {
+      fetch(this.options.endpoint, {
+        method: 'POST',
+        body: JSON.stringify({
+          lang: event.target.value,
+          content: this.originalContent,
+        }),
+      }).then(resp => resp.json()).then(json => {
+        const content = json.reply;
+        if (content) {
+          this.block.innerHTML = content;
+        } else {
+          console.error('error response', json);
+        }
+      });
+    }
   }
 }
 
