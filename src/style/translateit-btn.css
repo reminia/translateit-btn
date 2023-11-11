@@ -1,5 +1,9 @@
 /* translateit-btn.css */
 
+.translate-div {
+
+}
+
 .translate-select {
   background-color: #222;
   border-radius: 4px;
@@ -26,4 +30,8 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   width: 100%;
+}
+
+.translate-option {
+
 }
