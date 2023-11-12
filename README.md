@@ -1,6 +1,6 @@
 # translateit-btn
 
-A button that can be added to html page to translate the content to any language.
+A button that can be added to html page to translate the content to any language.<br/>
 It's a companion of the backend [translateit](https://github.com/reminia/translateit) api.
 
 ## Usage
@@ -15,8 +15,8 @@ Add the script and css to your html page and call the translate function.
 
 * selector, html element selector in which the content will be translated.
 * options:
-  * lang, array of languages to be selected, default to `['English', 'Chinese', 'French']`
-  * endpoint, the remote endpoint to accept translate request, default to `http://localhost:8080/translate`
+  * lang, array of languages to be selected, default to `['English', 'Chinese', 'French']`.
+  * endpoint, the remote endpoint to accept translate request, default to `http://localhost:8080/translate`.
 
 Wanner to customize the css style, overwrite the default [one](src/style/translateit-btn.css).
 
