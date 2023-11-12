@@ -4,11 +4,14 @@
   "description": "a button that can be used to translate any content",
   "main": "src/translate.js",
   "scripts": {
-    "lint": "npx eslint src/*.js"
+    "lint": "npx eslint src/*.js",
+    "build": "mkdirp dist && uglifyjs src/*.js -o dist/translateit-btn.min.js"
   },
   "author": "sleefd@gmail.com",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^8.53.0"
+    "eslint": "^8.53.0",
+    "mkdirp": "^3.0.1",
+    "uglify-js": "^3.17.4"
   }
 }
