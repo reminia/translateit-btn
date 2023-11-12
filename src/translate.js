@@ -2,12 +2,11 @@ class TranslateIt {
 
   static defaultOptions = {
     lang: ['English', 'Chinese', 'French'],
-    selector: '.post',
     endpoint: 'http://localhost:8080/translate',
   };
 
   constructor(selector, options) {
-    this.selector = selector || TranslateIt.defaultOptions.selector;
+    this.selector = selector;
     this.options = Object.assign({}, TranslateIt.defaultOptions, options);
     this.init();
   }
