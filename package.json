@@ -4,14 +4,20 @@
   "description": "a button that can be used to translate any content",
   "main": "src/translate.js",
   "scripts": {
+    "prebuild": "npm install && mkdirp dist",
     "lint": "npx eslint src/*.js",
-    "build": "mkdirp dist && uglifyjs src/*.js -o dist/translateit-btn.min.js"
+    "minjs": "npx uglifyjs src/*.js -o dist/translateit-btn.min.js",
+    "mincss": "postcss src/style/*.css -o dist/translateit-btn.min.css --use cssnano",
+    "build": "npm run minjs && npm run mincss",
+    "clean": "rm -rf dist node_modules"
   },
   "author": "sleefd@gmail.com",
   "license": "MIT",
   "devDependencies": {
+    "cssnano": "^6.0.1",
     "eslint": "^8.53.0",
     "mkdirp": "^3.0.1",
+    "postcss-cli": "^10.1.0",
     "uglify-js": "^3.17.4"
   }
 }
