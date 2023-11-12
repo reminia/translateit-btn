@@ -3,6 +3,10 @@
 A button that can be added to html page to translate the content to any language.<br/>
 It's a companion of the backend [translateit](https://github.com/reminia/translateit) api.
 
+## Build
+
+`npm run build` to create minify js and css.
+
 ## Usage
 
 Add the script and css to your html page and call the translate function.
