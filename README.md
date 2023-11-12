@@ -18,7 +18,6 @@ Add the script and css to your html page and call the translate function.
   * lang, array of languages to be selected, default to `['English', 'Chinese', 'French']`.
   * endpoint, the remote endpoint to accept translate request, default to `http://localhost:8080/translate`.
 
-Wanner to customize the css style, overwrite the default [one](src/style/translateit-btn.css).
+Wanner to customize the css style? Overwrite the default [one](src/style/translateit-btn.css).
 
-You can also track the translate behavior in google analysis by configuring **gtag** with
-`gtag('config', your-ga-id);`.
+Configure `gtag('config', your-ga-id);` to track the translate behaviour in google analysis.
