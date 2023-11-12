@@ -10,7 +10,7 @@ Add the script and css to your html page and call the translate function.
 ```html
 <link rel="stylesheet" href="/path/to/styles/translateit-btn.min.css">
 <script src="/path/to/translateit-btn.min.js"></script>
-<script>translateIt.translate(selector, options)</script>
+<script>translateIt.translate(selector, options);</script>
 ```
 
 * selector, html element selector in which the content will be translated.
@@ -22,5 +22,3 @@ Wanner to customize the css style, overwrite the default [one](src/style/transla
 
 You can also track the translate behavior in google analysis by configuring **gtag** with
 `gtag('config', your-ga-id);`.
-
-[](https://)
