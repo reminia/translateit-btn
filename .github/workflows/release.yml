@@ -2,7 +2,7 @@ name: Release assets to jsDelivr
 
 on:
   release:
-    branch: main
+    branch: master
   workflow_dispatch:
 
 jobs:
