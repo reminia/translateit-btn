@@ -23,7 +23,7 @@ class TranslateIt {
     const select = document.createElement('select');
     select.classList.add('translate-select');
     select.addEventListener('change', this.translateElement.bind(this));
-    div.classList.add("translate-div");
+    div.classList.add('translate-div');
     div.appendChild(select);
     this.block.insertAdjacentElement('beforebegin', div);
 
@@ -41,6 +41,13 @@ class TranslateIt {
   }
 
   translateElement(event) {
+    /* global gtag */
+    if (typeof gtag === 'function') {
+      gtag('event', 'translate', {
+        'page': document.url,
+        'lang': event.target.value(),
+      });
+    }
     if (event.target.selectedIndex === 0) {
       this.block.innerHTML = this.originalContent;
     } else {
