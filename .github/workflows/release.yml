@@ -26,5 +26,6 @@ jobs:
         with:
           files: dist/*  # Adjust this based on your dist folder structure
           token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
