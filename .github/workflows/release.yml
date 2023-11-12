@@ -24,12 +24,12 @@ jobs:
         run: npm run build
 
       - name: Set Version
-        run: echo "::set-output name=version::$(node -p "require('./package.json').version")"
+        run: echo "version=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
 
       - name: Release assets
         uses: ncipollo/release-action@v1
         with:
           artifacts: "dist/*"
-          name: ${{ steps.set_version.outputs.version }}
-          tag: ${{ steps.set_version.outputs.version }}
+          name: ${{ env.version }}
+          tag: ${{ env.version }}
           allowUpdates: true
