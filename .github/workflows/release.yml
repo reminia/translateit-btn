@@ -34,4 +34,4 @@ jobs:
           tag: ${{ env.version }}
           allowUpdates: true
         env:
-          RELEASE: "v${{ env.version }}"
+          RELEASE: "v2${{ env.version }}"
