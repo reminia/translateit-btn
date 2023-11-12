@@ -30,6 +30,8 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: "dist/*"
-          name: ${{ env.version }}
+          name: ${{env.RELEASE}}
           tag: ${{ env.version }}
           allowUpdates: true
+        env:
+          RELEASE: "v${{ env.version }}"
