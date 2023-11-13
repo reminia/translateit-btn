@@ -1,5 +1,5 @@
 {
-  "name": "translateit-btn",
+  "name": "@reminia/translateit-btn",
   "version": "1.0.0",
   "description": "a button that can be used to translate any content",
   "main": "src/translate.js",
