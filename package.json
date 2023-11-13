@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "a button that can be used to translate any content",
   "main": "src/translate.js",
+  "files": ["dist", "src"],
   "scripts": {
     "prebuild": "npm install && mkdirp dist",
     "lint": "npx eslint src/*.js",
