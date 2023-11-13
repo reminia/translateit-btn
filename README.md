@@ -12,8 +12,8 @@ It's a companion of the backend [translateit](https://github.com/reminia/transla
 Add the script and css to your html page and call the translate function.
 
 ```html
-<link rel="stylesheet" href="/path/to/styles/translateit-btn.min.css">
-<script src="/path/to/translateit-btn.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/reminia/translateit-btn/dist/translateit-btn.min.css">
+<script src="https://cdn.jsdelivr.net/gh/reminia/translateit-btn/dist/translateit-btn.min.js"></script>
 <script>translateIt.translate(selector, options);</script>
 ```
 
