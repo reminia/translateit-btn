@@ -43,7 +43,7 @@ class TranslateIt {
     /* global gtag */
     if (typeof gtag === 'function') {
       gtag('event', 'translate', {
-        'page': document.url,
+        'page': document.URL,
         'lang': event.target.value,
       });
     }
