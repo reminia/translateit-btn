@@ -44,7 +44,7 @@ class TranslateIt {
     if (typeof gtag === 'function') {
       gtag('event', 'translate', {
         'page': document.url,
-        'lang': event.target.value(),
+        'lang': event.target.value,
       });
     }
     if (event.target.selectedIndex === 0) {
