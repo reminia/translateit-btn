@@ -19,52 +19,60 @@ class TranslateIt {
 
   translate() {
     const div = document.createElement('div');
-    const select = document.createElement('select');
-    select.classList.add('translate-select');
-    select.addEventListener('change', this.translateElement.bind(this));
+    const button = document.createElement('button');
+    const ul = document.createElement('ul');
     div.classList.add('translate-div');
-    div.appendChild(select);
+    div.addEventListener('mouseleave', function() {
+      ul.style.display = 'none';
+    });
+    button.textContent = 'Translate';
+    button.classList.add('translate-btn');
+    button.addEventListener('click', function() {
+      ul.style.display = (ul.style.display === 'block') ? 'none' : 'block';
+    });
+    ul.classList.add('translate-ul');
+    div.appendChild(button);
+    div.appendChild(ul);
     this.block.insertAdjacentElement('beforebegin', div);
-
-    this.createOption(select, 'Translate', ['selected', 'translate-option']);
     for (const lang of this.options.lang) {
-      this.createOption(select, lang, ['translate-option']);
+      this.createOption(ul, lang, ['translate-li']);
     }
   }
 
-  createOption(select, text, classes) {
-    const option = document.createElement('option');
-    option.text = text;
-    classes.forEach(name => option.classList.add(name));
-    select.appendChild(option);
+  createOption(ul, text, classes) {
+    const li = document.createElement('li');
+    li.innerText = text;
+    classes.forEach(name => li.classList.add(name));
+    ul.appendChild(li);
+    const self = this;
+    li.addEventListener('click', function() {
+      self.translateElement(li.textContent);
+      ul.style.display = 'none';
+    });
   }
 
-  translateElement(event) {
+  translateElement(lang) {
     /* global gtag */
     if (typeof gtag === 'function') {
       gtag('event', 'translate', {
         'page': document.URL,
-        'lang': event.target.value,
+        'lang': lang,
       });
     }
-    if (event.target.selectedIndex === 0) {
-      this.block.innerHTML = this.originalContent;
-    } else {
-      fetch(this.options.endpoint, {
-        method: 'POST',
-        body: JSON.stringify({
-          lang: event.target.value,
-          content: this.originalContent,
-        }),
-      }).then(resp => resp.json()).then(json => {
-        const content = json.reply;
-        if (content) {
-          this.block.innerHTML = content;
-        } else {
-          console.error('error response', json);
-        }
-      });
-    }
+    fetch(this.options.endpoint, {
+      method: 'POST',
+      body: JSON.stringify({
+        lang: lang,
+        content: this.originalContent,
+      }),
+    }).then(resp => resp.json()).then(json => {
+      const content = json.reply;
+      if (content) {
+        this.block.innerHTML = content;
+      } else {
+        console.error('error response', json);
+      }
+    });
   }
 }
 

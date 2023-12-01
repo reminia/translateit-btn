@@ -6,7 +6,7 @@
   <script src="../src/translate.js"></script>
 </head>
 <body>
-<div>
+<div class="content">
   <p>This is a test.</p>
   <p>Let's see whether this page can be translated to different languages.</p>
   <code lang="scala">
@@ -17,7 +17,10 @@
     }
   </code>
   <script>
-    translateIt.translate('div');
+    translateIt.translate('.content', {
+      'endpoint': 'http://localhost:8080/translate',
+      'lang': ["Mandarin", "English", "Japanese"],
+    });
   </script>
 </div>
 </body>
